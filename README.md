@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/e34f462b-4449-40e4-b375-f945e8ceb023/project/018d8b26-e37a-4fa3-9cac-4ef8de5a74ac.svg)](https://wakatime.com/badge/user/e34f462b-4449-40e4-b375-f945e8ceb023/project/018d8b26-e37a-4fa3-9cac-4ef8de5a74ac)
+
 # Simple music app
 ### Flutter BLoC application with Discogs API for practice purposes.
 
