@@ -9,8 +9,19 @@ void main() {
       discogsApi = DiscogsRepository();
     });
 
-    test('Check API', () async {
-      await discogsApi.loadArtists();
+    test('Check artists loading', () async {
+      final result = await discogsApi.loadArtists();
+
+      return result.isNotEmpty;
+    });
+
+    test('Check artist releases', () async {
+      final artists = await discogsApi.loadArtists();
+      final releases = await discogsApi.getArtistSongs(artists[1]);
+
+      print(releases);
+
+      return releases.isNotEmpty;
     });
 
     // test('Get Artist', () async {
