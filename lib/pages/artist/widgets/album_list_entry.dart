@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/models/album.dart';
 import 'package:music_app/models/song.dart';
-import 'package:music_app/widgets/favourite_icon_button.dart';
+import 'package:music_app/pages/artist/widgets/song_list_entry.dart';
 
 class AlbumListEntry extends StatelessWidget {
   final Album album;
@@ -52,7 +52,7 @@ class AlbumListEntry extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: _generateSongList(),
+              children: _generateSongList(context),
             ),
           ),
         ],
@@ -60,21 +60,9 @@ class AlbumListEntry extends StatelessWidget {
     );
   }
 
-  List<Widget> _generateSongList() => songs
-      .mapIndexed(
-        (index, song) => ListTile(
-          leading: Text('${index + 1}'),
-          title: Text(song.name),
-          subtitle: Text(_formatDuration(song.duration)),
-          trailing: const FavouriteIconButton(filled: false),
-        ),
-      )
-      .toList();
-
-  String _formatDuration(Duration duration) {
-    final minutes = duration.inMinutes;
-    final seconds = '${duration.inSeconds.remainder(60)}'.padLeft(2, '0');
-
-    return '$minutes:$seconds';
+  List<Widget> _generateSongList(BuildContext context) {
+    return songs
+        .mapIndexed((index, song) => SongListEntry(index: index, song: song))
+        .toList();
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/pages/favorites/favorites_page.dart';
 import 'package:music_app/pages/home/home_page.dart';
 import 'package:music_app/repository/base_repository.dart';
 import 'package:music_app/repository/mock_repository.dart';
+import 'package:music_app/state/favorites/favorites_bloc.dart';
 import 'package:music_app/state/home/home_bloc.dart';
 
 class MusicApp extends StatefulWidget {
@@ -15,7 +17,7 @@ class MusicApp extends StatefulWidget {
 class _MusicAppState extends State<MusicApp> {
   static const _tabs = [
     HomePage(),
-    Placeholder(),
+    FavoritesPage(),
   ];
 
   int _tabIndex = 0;
@@ -28,9 +30,13 @@ class _MusicAppState extends State<MusicApp> {
     return Scaffold(
       body: RepositoryProvider.value(
         value: repository,
-        child: BlocProvider(
-          create: (context) =>
-              HomeBloc(repository: repository)..add(LoadHome()),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) => HomeBloc(repository: repository)..add(LoadHome()),
+            ),
+            BlocProvider(create: (_) => FavoritesBloc()..add(LoadFavorites())),
+          ],
           child: currentTab,
         ),
       ),

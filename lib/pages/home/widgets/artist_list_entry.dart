@@ -5,6 +5,7 @@ import 'package:music_app/models/artist.dart';
 import 'package:music_app/pages/artist/artist_page.dart';
 import 'package:music_app/repository/base_repository.dart';
 import 'package:music_app/state/artist/artist_bloc.dart';
+import 'package:music_app/state/favorites/favorites_bloc.dart';
 
 class ArtistListEntry extends StatelessWidget {
   final Artist artist;
@@ -42,13 +43,19 @@ class ArtistListEntry extends StatelessWidget {
   }
 
   void _openArtistPage(BuildContext context) {
-    final repository = RepositoryProvider.of<BaseRepository>(context);
+    final repository = context.read<BaseRepository>();
+    final favoritesBloc = context.read<FavoritesBloc>();
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => BlocProvider(
-          create: (_) => ArtistBloc(repository: repository)
-            ..add(LoadArtist(artist: artist)),
+        builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) => ArtistBloc(repository: repository)
+                ..add(LoadArtist(artist: artist)),
+            ),
+            BlocProvider.value(value: favoritesBloc),
+          ],
           child: ArtistPage(artist),
         ),
       ),

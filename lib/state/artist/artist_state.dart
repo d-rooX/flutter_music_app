@@ -15,5 +15,5 @@ class ArtistLoaded extends ArtistState {
   const ArtistLoaded({required this.albums});
 
   @override
-  List<Object> get props => [albums];
+  List<Object> get props => [albums.hashCode];
 }

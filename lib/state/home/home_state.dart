@@ -15,5 +15,5 @@ class HomeLoaded extends HomeState {
   const HomeLoaded({required this.artists});
 
   @override
-  List<Object> get props => [artists];
+  List<Object> get props => [artists.hashCode];
 }

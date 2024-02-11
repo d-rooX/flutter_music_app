@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
 class FavouriteIconButton extends StatelessWidget {
+  final VoidCallback onPressed;
   final bool filled;
-  const FavouriteIconButton({required this.filled, super.key});
+  const FavouriteIconButton({
+    required this.onPressed,
+    required this.filled,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
-      icon: const Icon(
-        Icons.favorite_border,
+      onPressed: onPressed,
+      icon: Icon(
+        filled ? Icons.favorite : Icons.favorite_border,
         size: 28,
       ),
     );
