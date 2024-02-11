@@ -13,7 +13,15 @@ class FavoritesPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Favorites')),
       body: BlocBuilder<FavoritesBloc, FavoritesState>(
         builder: (context, state) {
-          if (state is! FavoritesLoaded) return const LoadingIndicator();
+          if (state is! FavoritesLoaded) {
+            return const LoadingIndicator();
+          } else if (state.favorites.isEmpty) {
+            return const Center(
+              child: Text(
+                "You don't have any favorites yet. Go on and add some!",
+              ),
+            );
+          }
 
           return FavoriteList(favorites: state.favorites);
         },
