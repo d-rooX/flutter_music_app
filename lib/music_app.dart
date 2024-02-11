@@ -6,6 +6,8 @@ import 'package:music_app/repository/base_repository.dart';
 import 'package:music_app/repository/mock_repository.dart';
 import 'package:music_app/state/favorites/favorites_bloc.dart';
 import 'package:music_app/state/home/home_bloc.dart';
+import 'package:music_app/storage/favorites_storage/favorites_base_storage.dart';
+import 'package:music_app/storage/favorites_storage/hive/favorites_hive_storage.dart';
 
 class MusicApp extends StatefulWidget {
   const MusicApp({super.key});
@@ -25,6 +27,8 @@ class _MusicAppState extends State<MusicApp> {
   @override
   Widget build(BuildContext context) {
     final BaseRepository repository = MockRepository();
+    final FavoritesBaseStorage favoritesStorage = FavoritesHiveStorage();
+
     final currentTab = _tabs[_tabIndex];
 
     return Scaffold(
@@ -35,7 +39,10 @@ class _MusicAppState extends State<MusicApp> {
             BlocProvider(
               create: (_) => HomeBloc(repository: repository)..add(LoadHome()),
             ),
-            BlocProvider(create: (_) => FavoritesBloc()..add(LoadFavorites())),
+            BlocProvider(
+              create: (_) => FavoritesBloc(storage: favoritesStorage)
+                ..add(LoadFavorites()),
+            ),
           ],
           child: currentTab,
         ),
