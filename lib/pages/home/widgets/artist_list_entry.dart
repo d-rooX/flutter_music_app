@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/models/artist.dart';
+import 'package:music_app/models/base/artist.dart';
 import 'package:music_app/pages/artist/artist_page.dart';
 import 'package:music_app/repository/base_repository.dart';
 import 'package:music_app/state/artist/artist_bloc.dart';
@@ -27,12 +27,13 @@ class ArtistListEntry extends StatelessWidget {
             width: 100,
             height: 100,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15),
+          const SizedBox(width: 15),
+          Flexible(
             child: Text(
               artist.name,
+              overflow: TextOverflow.fade,
               style: const TextStyle(
-                fontSize: 26,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),

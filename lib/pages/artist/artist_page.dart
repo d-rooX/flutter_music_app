@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/models/album.dart';
-import 'package:music_app/models/artist.dart';
-import 'package:music_app/models/song.dart';
+import 'package:music_app/models/base_models.dart';
 import 'package:music_app/pages/artist/widgets/album_list_entry.dart';
 import 'package:music_app/state/artist/artist_bloc.dart';
 import 'package:music_app/widgets/loading_indicator.dart';

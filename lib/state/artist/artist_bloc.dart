@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
-import 'package:music_app/models/album.dart';
-import 'package:music_app/models/artist.dart';
-import 'package:music_app/models/song.dart';
+import 'package:music_app/models/base_models.dart';
 import 'package:music_app/repository/base_repository.dart';
 
 part 'artist_event.dart';

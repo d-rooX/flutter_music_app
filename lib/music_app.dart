@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/pages/favorites/favorites_page.dart';
 import 'package:music_app/pages/home/home_page.dart';
 import 'package:music_app/repository/base_repository.dart';
-import 'package:music_app/repository/mock_repository.dart';
+import 'package:music_app/repository/discogs_repository.dart';
 import 'package:music_app/state/favorites/favorites_bloc.dart';
 import 'package:music_app/state/home/home_bloc.dart';
 import 'package:music_app/storage/favorites_storage/favorites_base_storage.dart';
@@ -26,7 +26,7 @@ class _MusicAppState extends State<MusicApp> {
 
   @override
   Widget build(BuildContext context) {
-    final BaseRepository repository = MockRepository();
+    final BaseRepository repository = DiscogsRepository();
     final FavoritesBaseStorage favoritesStorage = FavoritesHiveStorage();
 
     final currentTab = _tabs[_tabIndex];

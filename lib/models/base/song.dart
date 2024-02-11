@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:music_app/models/album.dart';
-import 'package:music_app/models/artist.dart';
+import 'package:music_app/models/base_models.dart';
 
 part 'song.g.dart';
 

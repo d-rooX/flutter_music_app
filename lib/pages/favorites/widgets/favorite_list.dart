@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/models/artist.dart';
-import 'package:music_app/models/song.dart';
+import 'package:music_app/models/base_models.dart';
 import 'package:music_app/pages/favorites/widgets/favorite_list_entry.dart';
 
 class FavoriteList extends StatelessWidget {

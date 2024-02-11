@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:music_app/models/album.dart';
-import 'package:music_app/models/song.dart';
+import 'package:music_app/models/base_models.dart';
 import 'package:music_app/pages/artist/widgets/song_list_entry.dart';
 
 class AlbumListEntry extends StatelessWidget {

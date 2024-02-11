@@ -1,6 +1,4 @@
-import 'package:music_app/models/album.dart';
-import 'package:music_app/models/artist.dart';
-import 'package:music_app/models/song.dart';
+import 'package:music_app/models/base_models.dart';
 import 'package:music_app/repository/base_repository.dart';
 
 class MockRepository implements BaseRepository {

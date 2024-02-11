@@ -1,7 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:music_app/models/album.dart';
-import 'package:music_app/models/artist.dart';
-import 'package:music_app/models/song.dart';
+import 'package:music_app/models/base_models.dart';
 import 'package:music_app/storage/favorites_storage/favorites_base_storage.dart';
 import 'package:music_app/storage/favorites_storage/hive/adapters/duration_adapter.dart';
 
