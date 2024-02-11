@@ -1,10 +1,10 @@
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:music_app/models/base/type_independent_equatable.dart';
 
 part 'album.g.dart';
 
 @HiveType(typeId: 3)
-class Album extends Equatable {
+class Album extends TypeIndependentEquatable {
   @HiveField(0)
   final String title;
 

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'discogs_song_data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class DiscogsSongData {
   String title;
   String duration;
@@ -14,6 +14,4 @@ class DiscogsSongData {
 
   factory DiscogsSongData.fromJson(Map<String, dynamic> json) =>
       _$DiscogsSongDataFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DiscogsSongDataToJson(this);
 }

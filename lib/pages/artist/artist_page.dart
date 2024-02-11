@@ -17,8 +17,9 @@ class ArtistPage extends StatelessWidget {
       body: BlocBuilder<ArtistBloc, ArtistState>(
         builder: (context, state) {
           if (state is ArtistLoadingError) {
-            _showError(context, state.error);
-            Navigator.of(context).pop();
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => _showError(context, state.error),
+            );
           }
 
           if (state is! ArtistLoaded) return const LoadingIndicator();
@@ -69,5 +70,6 @@ class ArtistPage extends StatelessWidget {
         content: Text(error),
       ),
     );
+    Navigator.of(context).pop();
   }
 }

@@ -1,11 +1,11 @@
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:music_app/models/base/type_independent_equatable.dart';
 import 'package:music_app/models/base_models.dart';
 
 part 'song.g.dart';
 
 @HiveType(typeId: 1)
-class Song extends Equatable {
+class Song extends TypeIndependentEquatable {
   @HiveField(0)
   final Artist artist;
 
@@ -26,5 +26,5 @@ class Song extends Equatable {
   });
 
   @override
-  List<Object?> get props => [artist, name, album, duration];
+  List<Object?> get props => [artist.name, name, album.title, duration];
 }

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'discogs_release_data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class DiscogsReleaseData {
   int id;
   String? status;
@@ -33,6 +33,4 @@ class DiscogsReleaseData {
 
   factory DiscogsReleaseData.fromJson(Map<String, dynamic> json) =>
       _$DiscogsReleaseDataFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DiscogsReleaseDataToJson(this);
 }
