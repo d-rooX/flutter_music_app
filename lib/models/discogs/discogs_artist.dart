@@ -15,4 +15,7 @@ class DiscogsArtist extends Artist {
         name: data.title,
         avatarUrl: data.coverImage,
       );
+
+  @override
+  List<Object?> get props => [id, name, avatarUrl];
 }

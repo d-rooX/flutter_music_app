@@ -17,4 +17,7 @@ class DiscogsAlbum extends Album {
       coverUrl: data.thumb,
     );
   }
+
+  @override
+  List<Object?> get props => [title, coverUrl, resourceUrl];
 }

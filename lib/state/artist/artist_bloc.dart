@@ -20,9 +20,20 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
     LoadArtist event,
     Emitter<ArtistState> emit,
   ) async {
-    final songs = await repository.getArtistSongs(event.artist);
-    final songsGroupedByAlbum = groupBy(songs, (song) => song.album);
+    List<Song> songs;
+    try {
+      songs = await repository.getArtistSongs(event.artist);
+    } catch (e) {
+      emit(
+        const ArtistLoadingError(
+          error: "The error occurred while loading artists songs;\n"
+              "Please check your internet connection or try again later",
+        ),
+      );
+      return;
+    }
 
+    final songsGroupedByAlbum = groupBy(songs, (song) => song.album);
     emit(ArtistLoaded(albums: songsGroupedByAlbum));
   }
 }

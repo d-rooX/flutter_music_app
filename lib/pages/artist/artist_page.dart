@@ -16,8 +16,14 @@ class ArtistPage extends StatelessWidget {
       appBar: AppBar(title: Text(artist.name)),
       body: BlocBuilder<ArtistBloc, ArtistState>(
         builder: (context, state) {
+          if (state is ArtistLoadingError) {
+            _showError(context, state.error);
+            Navigator.of(context).pop();
+          }
+
           if (state is! ArtistLoaded) return const LoadingIndicator();
           final albums = state.albums;
+          final albumEntries = _generateAlbumEntriesList(albums);
 
           return SingleChildScrollView(
             child: Column(
@@ -35,7 +41,10 @@ class ArtistPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                ..._generateAlbumEntriesList(albums),
+                if (albumEntries.isNotEmpty)
+                  ...albumEntries
+                else
+                  const Center(child: Text('Artist does not have any albums')),
               ],
             ),
           );
@@ -53,4 +62,12 @@ class ArtistPage extends StatelessWidget {
             ),
           )
           .toList();
+
+  void _showError(BuildContext context, String error) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(error),
+      ),
+    );
+  }
 }

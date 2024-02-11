@@ -14,7 +14,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onLoadHome(LoadHome event, Emitter<HomeState> emit) async {
-    final artists = await repository.loadArtists();
-    emit(HomeLoaded(artists: artists));
+    List<Artist> artists;
+    try {
+      artists = await repository.loadArtists();
+      emit(HomeLoaded(artists: artists));
+    } catch (e) {
+      emit(
+        const HomeLoadingError(
+          error: 'Some error occurred while loading artists;\n'
+              'Please check your internet connection or try again later',
+        ),
+      );
+    }
   }
 }

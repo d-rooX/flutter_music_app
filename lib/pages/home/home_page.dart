@@ -13,7 +13,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Home')),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
+          if (state is HomeLoadingError) {
+            return Center(child: Text(state.error));
+          }
           if (state is! HomeLoaded) return const LoadingIndicator();
+
           final artists = state.artists;
 
           return ListView.separated(

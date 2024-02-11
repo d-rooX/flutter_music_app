@@ -9,6 +9,15 @@ abstract class ArtistState extends Equatable {
 
 class ArtistLoading extends ArtistState {}
 
+class ArtistLoadingError extends ArtistState {
+  final String error;
+
+  const ArtistLoadingError({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
 class ArtistLoaded extends ArtistState {
   final Map<Album, List<Song>> albums;
 
